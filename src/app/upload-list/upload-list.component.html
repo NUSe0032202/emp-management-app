@@ -1,9 +1,24 @@
 <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="file">Select File</label>
-    <input formControlName="file" id="file" type="file" class="form-control" accept=".csv" 
-    (change)="onSelect($event)"/>
+    <input
+      formControlName="file"
+      id="file"
+      type="file"
+      class="form-control"
+      accept=".csv"
+      (change)="onSelect($event)"
+    />
   </div>
-  <button type="submit">Submit</button>
+  <button class="btn btn-primary" type="submit">Submit</button>
+  <button class="btn btn-danger" type="button" (click)="closeModal('upload-component')">Close</button>
 </form>
-<button (click)="closeModal('upload-component')">Close</button>
+<div class="bt-space"></div>
+<div *ngFor="let msg of feedbackMsgs">
+  <div class="alert alert-danger" role="alert" *ngIf="respError">
+    <p>{{ msg }}</p>
+  </div>
+  <div class="alert alert-success" role="alert" *ngIf="respOk">
+    <p>{{ msg }}</p>
+  </div>
+</div>

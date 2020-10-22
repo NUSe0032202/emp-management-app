@@ -8,6 +8,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { UploadListComponent } from './upload-list/upload-list.component';
 import { ModalModule } from './_modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     SidebarComponent,
     EmployeeListComponent,
-    UploadListComponent
+    UploadListComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import {
   HttpClient,
   HttpRequest,
@@ -15,7 +17,7 @@ export class UploadService {
 
   constructor(private http: HttpClient) {}
 
-  uploadEmployeeList (data: FormData) {
+  uploadEmployeeList (data: FormData): Observable<any> {
     return this.http.post(`${this.endPoint}/users/upload`,data);
   }
 }
