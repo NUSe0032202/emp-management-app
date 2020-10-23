@@ -4,6 +4,7 @@ import { RetrieveService } from '../Services/retrieve.service';
 import { ModalService } from '../_modal';
 import { Employee } from '../employee-model';
 import { ListService } from '../Services/list.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,11 +13,20 @@ import { ListService } from '../Services/list.service';
 })
 export class DashboardComponent implements OnInit {
   loadedEmployees: Employee[] = [];
+  searchForm: FormGroup;
 
   constructor(private modalService: ModalService, private retrieveService: RetrieveService,
     private listService: ListService) { }
 
   ngOnInit(): void {
+    this.searchForm = new FormGroup({
+      minSalary: new FormControl(null, Validators.required),
+      maxSalary: new FormControl(null, Validators.required),
+      offset: new FormControl(null, Validators.required),
+      maxNumber: new FormControl(null, Validators.required),
+      sort: new FormControl(null),
+      ascDsc: new FormControl(null)
+    });
   }
 
   closeModal(id: string) {
@@ -31,6 +41,15 @@ export class DashboardComponent implements OnInit {
         console.log("Data after pipe:" + this.loadedEmployees);
         this.listService.activateList.next(this.loadedEmployees);}
     );
+  }
+
+  onSubmit(){
+    console.log(this.searchForm.get('minSalary').value);
+    console.log(this.searchForm.get('maxSalary').value);
+    console.log(this.searchForm.get('offset').value);
+    console.log(this.searchForm.get('maxNumber').value);
+    console.log(this.searchForm.get('sort').value);
+    console.log(this.searchForm.get('ascDsc').value);
   }
 
 }

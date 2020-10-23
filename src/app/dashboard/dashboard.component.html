@@ -1,3 +1,62 @@
-<p>dashboard works!</p>
-<button class="btn btn-danger" type="button" (click)="closeModal('dashboard-component')">Close</button>
-<button type="button" (click)="getEmployees()">Test Retrieve</button>
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="minSalary">Select Minimum Salary</label>
+    <input
+      formControlName="minSalary"
+      id="minSalary"
+      type="number"
+      class="form-control"
+    />
+    <!-- </div> -->
+
+    <label for="maxSalary">Select Maximum Salary</label>
+    <input
+      formControlName="maxSalary"
+      id="maxSalary"
+      type="number"
+      class="form-control"
+    />
+    <label for="offset">Select Offset</label>
+    <input
+      formControlName="offset"
+      id="offset"
+      type="number"
+      class="form-control"
+    />
+    <label for="maxNumber">Select Maximum Number Of Records To Display </label>
+    <input
+      formControlName="maxNumber"
+      id="maxNumber"
+      type="number"
+      class="form-control"
+    />
+    <label for="sort">Sort By</label>
+    <select class="form-control" id="sort" formControlName="sort">
+      <option>ID</option>
+      <option>Name</option>
+      <option>Login</option>
+      <option>Salary</option>
+    </select>
+    <label for="ascDsc">Asceding/Descending</label>
+    <select class="form-control" id="ascDsc" formControlName="ascDsc">
+      <option>+</option>
+      <option>-</option>
+    </select>
+  </div>
+  <button
+    class="btn btn-danger"
+    type="button"
+    (click)="closeModal('dashboard-component')"
+  >
+    Close
+  </button>
+  <button class="btn btn-primary" type=submit>Retrieve Records</button>
+</form>
+<!-- <button
+  class="btn btn-danger"
+  type="button"
+  (click)="closeModal('dashboard-component')"
+>
+  Close
+</button>
+<button type="button" (click)="getEmployees()">Test Retrieve</button> -->
