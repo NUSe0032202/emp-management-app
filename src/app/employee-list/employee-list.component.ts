@@ -11,13 +11,16 @@ import { Subscription } from 'rxjs';
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
   loadedEmployees: Employee[];
-  private activatedSub : Subscription; 
+  renderList = false;
+  private activatedSub : Subscription;
+   
 
   constructor(private listService: ListService) { }
 
   ngOnInit(): void {
     this.activatedSub = this.listService.activateList.subscribe(didActivate=>{
       this.loadedEmployees = didActivate;
+      this.renderList = true;
       console.log("Triggered from emplist: ");
       console.log(this.loadedEmployees);
     })
