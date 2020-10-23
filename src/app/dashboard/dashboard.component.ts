@@ -14,6 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class DashboardComponent implements OnInit {
   loadedEmployees: Employee[] = [];
   searchForm: FormGroup;
+  searchParams: string[] = [];
 
   constructor(private modalService: ModalService, private retrieveService: RetrieveService,
     private listService: ListService) { }
@@ -34,7 +35,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getEmployees() {
-    this.retrieveService.retrieveEmployees().subscribe(
+    this.retrieveService.retrieveEmployees(this.searchParams).subscribe(
       respData => {
         console.log("respdata:" + respData);
         this.loadedEmployees = respData;
@@ -50,6 +51,17 @@ export class DashboardComponent implements OnInit {
     console.log(this.searchForm.get('maxNumber').value);
     console.log(this.searchForm.get('sort').value);
     console.log(this.searchForm.get('ascDsc').value);
+
+    this.searchParams.push(
+      this.searchForm.get('minSalary').value,
+      this.searchForm.get('maxSalary').value,
+      this.searchForm.get('offset').value,
+      this.searchForm.get('maxNumber').value,
+      this.searchForm.get('sort').value,
+      this.searchForm.get('ascDsc').value
+    );
+
+    this.getEmployees();
   }
 
 }

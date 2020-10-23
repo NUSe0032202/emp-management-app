@@ -5,6 +5,7 @@ import { Employee } from '../employee-model';
 
 import {
   HttpClient,
+  HttpParams,
   HttpRequest,
   HttpHeaders,
   HttpEvent,
@@ -18,8 +19,11 @@ export class RetrieveService {
 
   constructor(private http: HttpClient) {}
 
-  retrieveEmployees() {
-    return this.http.get(`${this.endPoint}/users`).pipe(
+  retrieveEmployees(searchParams: string[]) {
+    let params = new HttpParams().set('minSalary',searchParams[0])
+    .set('maxSalary',searchParams[1]).set('offset',searchParams[2]).set('limit',searchParams[3])
+    .set('sort',searchParams[5] + searchParams[4]);
+    return this.http.get(`${this.endPoint}/users?`,{params}).pipe(
       map((data) => {
         const empArray: Employee[] = [];
         for(const key in data) {
