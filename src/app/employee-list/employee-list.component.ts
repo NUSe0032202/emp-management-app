@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { Employee } from '../employee-model';
+import { ListService } from '../Services/list.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
-export class EmployeeListComponent implements OnInit {
+export class EmployeeListComponent implements OnInit, OnDestroy {
+  loadedEmployees: Employee[];
+  private activatedSub : Subscription; 
 
-  constructor() { }
+  constructor(private listService: ListService) { }
 
   ngOnInit(): void {
+    this.activatedSub = this.listService.activateList.subscribe(didActivate=>{
+      this.loadedEmployees = didActivate;
+      console.log("Triggered from emplist: ");
+      console.log(this.loadedEmployees);
+    })
+  }
+
+  ngOnDestroy() : void {
+    this.activatedSub.unsubscribe();
   }
 
 }
