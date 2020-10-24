@@ -20,9 +20,15 @@ export class RetrieveService {
   constructor(private http: HttpClient) {}
 
   retrieveEmployees(searchParams: string[]) {
+    let sortParam;
+    if(searchParams[5] === '-') {
+       sortParam = searchParams[5] + searchParams[4];
+    } else {
+       sortParam = encodeURIComponent(searchParams[5] + searchParams[4]);
+    }
     let params = new HttpParams().set('minSalary',searchParams[0])
     .set('maxSalary',searchParams[1]).set('offset',searchParams[2]).set('limit',searchParams[3])
-    .set('sort',searchParams[5] + searchParams[4]);
+    .set('sort',sortParam);
     return this.http.get(`${this.endPoint}/users?`,{params}).pipe(
       map((data) => {
         const empArray: Employee[] = [];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener  } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UploadService } from '../Services/upload.service';
 
@@ -9,7 +9,7 @@ import { ModalService } from '../_modal';
   templateUrl: './upload-list.component.html',
   styleUrls: ['./upload-list.component.css'],
 })
-export class UploadListComponent implements OnInit {
+export class UploadListComponent implements OnInit, OnDestroy  {
   uploadForm: FormGroup;
   feedbackMsgs: String[];
   respError = false;
@@ -57,5 +57,12 @@ export class UploadListComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+    this.respOk = false;
+    this.respError = false;
+  }
+  
+  
+  ngOnDestroy() {
+
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { RetrieveService } from '../Services/retrieve.service';
 
 import { ModalService } from '../_modal';
@@ -11,7 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   loadedEmployees: Employee[] = [];
   searchForm: FormGroup;
   searchParams: string[] = [];
@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+     
   }
 
   getEmployees() {
@@ -40,7 +41,11 @@ export class DashboardComponent implements OnInit {
         console.log("respdata:" + respData);
         this.loadedEmployees = respData;
         console.log("Data after pipe:" + this.loadedEmployees);
-        this.listService.activateList.next(this.loadedEmployees);}
+        this.listService.activateList.next(this.loadedEmployees);},
+        error=> {},
+        () => {
+          console.log("on request complete");
+          this.searchParams.length = 0;}
     );
   }
 
@@ -62,6 +67,11 @@ export class DashboardComponent implements OnInit {
     );
 
     this.getEmployees();
+  }
+  
+  
+  ngOnDestroy() {
+    console.log("destroy dashboard");
   }
 
 }
