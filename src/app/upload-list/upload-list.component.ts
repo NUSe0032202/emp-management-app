@@ -7,6 +7,7 @@ import { RetrieveService } from '../Services/retrieve.service';
 import { ListService } from '../Services/list.service';
 import { Employee } from '../employee-model';
 
+
 @Component({
   selector: 'app-upload-list',
   templateUrl: './upload-list.component.html',
@@ -17,6 +18,7 @@ export class UploadListComponent implements OnInit, OnDestroy  {
   feedbackMsgs: String[];
   respError = false;
   respOk = false;
+  spinner = false;
   searchParams: string[] = ['0','999999','0','50','ID','+'];
   loadedEmployees: Employee[] = [];
 
@@ -50,14 +52,17 @@ export class UploadListComponent implements OnInit, OnDestroy  {
     console.log(this.uploadForm.get('fileSource').value);
     const formData = new FormData();
     formData.append('file', this.uploadForm.get('fileSource').value);
+    this.spinner = true;
     this.uploadService.uploadEmployeeList(formData).subscribe(
       (resp) => {
         this.feedbackMsgs = resp;
         this.respOk = true;
+        this.spinner = false;
       },
       (errorresp) => {
         this.feedbackMsgs = errorresp.error;
         this.respError = true;
+        this.spinner = false;
       },
       () => {
         if(!this.respError) {

@@ -1,7 +1,11 @@
 button {
-    display: inline-block;
-    margin-left :5px 
-  }
-  .bt-space{
-      margin-bottom: 1em;
-    }
+  display: inline-block;
+  margin-left: 5px;
+}
+.bt-space {
+  margin-bottom: 1em;
+}
+.wrapper-spinner {
+  display: flex;
+  align-items: center;
+}

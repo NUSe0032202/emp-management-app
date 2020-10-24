@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule} from '@angular/material/button';
 import { EmployeeCardComponent } from './employee-card/employee-card.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { EmployeeCardComponent } from './employee-card/employee-card.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatCardModule, MatButtonModule
+    MatCardModule, MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

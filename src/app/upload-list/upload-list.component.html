@@ -11,7 +11,13 @@
     />
   </div>
   <button class="btn btn-primary" type="submit">Submit</button>
-  <button class="btn btn-danger" type="button" (click)="closeModal('upload-component')">Close</button>
+  <button
+    class="btn btn-danger"
+    type="button"
+    (click)="closeModal('upload-component')"
+  >
+    Close
+  </button>
 </form>
 <div class="bt-space"></div>
 <div *ngFor="let msg of feedbackMsgs">
@@ -21,4 +27,8 @@
   <div class="alert alert-success" role="alert" *ngIf="respOk">
     <p>{{ msg }}</p>
   </div>
+</div>
+<div class="wrapper-spinner" *ngIf="spinner">
+  <mat-spinner [diameter]="24" ></mat-spinner>
+  <span>Uploading...</span>
 </div>
