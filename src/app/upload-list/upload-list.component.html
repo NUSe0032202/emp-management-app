@@ -8,6 +8,7 @@
       class="form-control"
       accept=".csv"
       (change)="onSelect($event)"
+      data-cy="submit"
     />
   </div>
   <button class="btn btn-primary" type="submit">Submit</button>
@@ -20,7 +21,7 @@
   </button>
 </form>
 <div class="bt-space"></div>
-<div *ngFor="let msg of feedbackMsgs">
+<div *ngFor="let msg of feedbackMsgs" class="uploadMsgs">
   <div class="alert alert-danger" role="alert" *ngIf="respError">
     <p>{{ msg }}</p>
   </div>
