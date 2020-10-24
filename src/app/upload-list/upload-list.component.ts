@@ -3,6 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UploadService } from '../Services/upload.service';
 
 import { ModalService } from '../_modal';
+import { RetrieveService } from '../Services/retrieve.service';
+import { ListService } from '../Services/list.service';
+import { Employee } from '../employee-model';
 
 @Component({
   selector: 'app-upload-list',
@@ -14,10 +17,14 @@ export class UploadListComponent implements OnInit, OnDestroy  {
   feedbackMsgs: String[];
   respError = false;
   respOk = false;
+  searchParams: string[] = ['0','999999','0','50','ID','+'];
+  loadedEmployees: Employee[] = [];
 
   constructor(
     private modalService: ModalService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private retrieveService: RetrieveService,
+    private listService: ListService
   ) {}
 
   ngOnInit() {
@@ -51,6 +58,16 @@ export class UploadListComponent implements OnInit, OnDestroy  {
       (errorresp) => {
         this.feedbackMsgs = errorresp.error;
         this.respError = true;
+      },
+      () => {
+        if(!this.respError) {
+          this.retrieveService.retrieveEmployees(this.searchParams).subscribe(
+            data => {
+              this.loadedEmployees = data;
+              this.listService.activateList.next(this.loadedEmployees);
+            }
+          );
+        }
       }
     );
   }
