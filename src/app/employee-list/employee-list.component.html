@@ -1,10 +1,10 @@
 <div *ngIf="renderList; else renderWelcome">
   <app-employee-card
     *ngFor="let emp of loadedEmployees"
-    [id]="emp.employeeID"
-    [login]="emp.employeeLogin"
-    [name]="emp.employeeName"
-    [salary]="emp.employeeSalary"
+    [id]="emp.id"
+    [login]="emp.login"
+    [name]="emp.name"
+    [salary]="emp.salary"
   ></app-employee-card>
 </div>
 <ng-template #renderWelcome>

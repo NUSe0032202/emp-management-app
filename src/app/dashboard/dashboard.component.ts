@@ -38,7 +38,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getEmployees() {
     this.retrieveService.retrieveEmployees(this.searchParams).subscribe(
       respData => {
-        console.log("respdata:" + respData);
         this.loadedEmployees = respData;
         console.log("Data after pipe:" + this.loadedEmployees);
         this.listService.activateList.next(this.loadedEmployees);},
