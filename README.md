@@ -1,8 +1,10 @@
-### Employee Management App
+# Employee Management App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
-# How to use
+![Landing Page Screenshot](assets/images/landingpage.jpg)
+
+## How to use
 
 1. Download this repository and unzip the project to a desired folder
 2. Run `npm install` to install all project dependencies
