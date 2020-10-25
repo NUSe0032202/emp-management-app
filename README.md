@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
-![Landing Page Screenshot](assets/images/landingpage.jpg)
+![Landing Page Screenshot](https://github.com/NUSe0032202/emp-management-app/blob/master/assets/images/landingpage.jpg)
 
 ## How to use
 
