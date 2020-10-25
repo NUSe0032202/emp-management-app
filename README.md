@@ -2,7 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
-![Landing Page Screenshot](src/assets/images/landingpage.jpg)
+![Landing Page Screenshot](src/assets/images/landingpage.jpg)[Filter Page](src/assets/images/filterPage.jpg)[Entries Page Screenshot](src/assets/images/entries.jpg)
+
 
 ## How to use
 
