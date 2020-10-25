@@ -63,6 +63,15 @@ export class UploadListComponent implements OnInit, OnDestroy  {
         this.feedbackMsgs = errorresp.error;
         this.respError = true;
         this.spinner = false;
+        if(this.feedbackMsgs[0] === 'Duplicate ID/Login detected') {
+          console.log('after if block');
+          this.retrieveService.retrieveEmployees(this.searchParams).subscribe(
+            data => {
+              this.loadedEmployees = data;
+              this.listService.activateList.next(this.loadedEmployees);
+            }
+          );
+        }
       },
       () => {
         if(!this.respError) {
