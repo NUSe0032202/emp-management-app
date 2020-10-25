@@ -4,6 +4,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ![Landing Page Screenshot](src/assets/images/landingpage.jpg)![Filter Page](src/assets/images/filterPage.jpg)![Entries Page Screenshot](src/assets/images/entries.jpg)
 
+## Dependencies
+
+1. BootStrap 4
+2. Angular Material
+3. Cypress for end to end tests
+4. [Angular 9 - Modal Windows](https://jasonwatmore.com/post/2020/05/14/angular-9-modal-windows) by Jason Watmore
 
 ## How to use
 
