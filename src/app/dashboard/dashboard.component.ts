@@ -9,15 +9,18 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   loadedEmployees: Employee[] = [];
   searchForm: FormGroup;
   searchParams: string[] = [];
 
-  constructor(private modalService: ModalService, private retrieveService: RetrieveService,
-    private listService: ListService) { }
+  constructor(
+    private modalService: ModalService,
+    private retrieveService: RetrieveService,
+    private listService: ListService
+  ) {}
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
@@ -26,36 +29,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
       offset: new FormControl(null, Validators.required),
       maxNumber: new FormControl(null, Validators.required),
       sort: new FormControl(null),
-      ascDsc: new FormControl(null)
+      ascDsc: new FormControl(null),
     });
   }
 
   closeModal(id: string) {
     this.modalService.close(id);
-     
   }
 
   getEmployees() {
     this.retrieveService.retrieveEmployees(this.searchParams).subscribe(
-      respData => {
+      (respData) => {
         this.loadedEmployees = respData;
-        console.log("Data after pipe:" + this.loadedEmployees);
-        this.listService.activateList.next(this.loadedEmployees);},
-        error=> {},
-        () => {
-          console.log("on request complete");
-          this.searchParams.length = 0;}
+        this.listService.activateList.next(this.loadedEmployees);
+      },
+      (error) => {},
+      () => {
+        this.searchParams.length = 0;
+      }
     );
   }
 
-  onSubmit(){
-    console.log(this.searchForm.get('minSalary').value);
-    console.log(this.searchForm.get('maxSalary').value);
-    console.log(this.searchForm.get('offset').value);
-    console.log(this.searchForm.get('maxNumber').value);
-    console.log(this.searchForm.get('sort').value);
-    console.log(this.searchForm.get('ascDsc').value);
-
+  onSubmit() {
     this.searchParams.push(
       this.searchForm.get('minSalary').value,
       this.searchForm.get('maxSalary').value,
@@ -67,10 +62,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.getEmployees();
   }
-  
-  
-  ngOnDestroy() {
-    console.log("destroy dashboard");
-  }
 
+  ngOnDestroy() {
+    console.log('destroy dashboard');
+  }
 }

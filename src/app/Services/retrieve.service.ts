@@ -34,14 +34,10 @@ export class RetrieveService {
       .set('sort', sortParam);
     return this.http.get(`${this.endPoint}/users?`, { params }).pipe(
       map((data) => {
-        console.log('Data received');
-        console.log(data);
         const empArray: Employee[] = [];
         for (const key in data) {
           empArray.push( ...data[key] );
         }
-        console.log("After data parse");
-        console.log(empArray);
         return empArray;
       })
     );

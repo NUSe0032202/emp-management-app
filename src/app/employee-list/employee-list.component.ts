@@ -21,8 +21,6 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.activatedSub = this.listService.activateList.subscribe(didActivate=>{
       this.loadedEmployees = didActivate;
       this.renderList = true;
-      console.log("Triggered from emplist: ");
-      console.log(this.loadedEmployees);
     })
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener  } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UploadService } from '../Services/upload.service';
 
@@ -7,19 +7,18 @@ import { RetrieveService } from '../Services/retrieve.service';
 import { ListService } from '../Services/list.service';
 import { Employee } from '../employee-model';
 
-
 @Component({
   selector: 'app-upload-list',
   templateUrl: './upload-list.component.html',
   styleUrls: ['./upload-list.component.css'],
 })
-export class UploadListComponent implements OnInit, OnDestroy  {
+export class UploadListComponent implements OnInit, OnDestroy {
   uploadForm: FormGroup;
   feedbackMsgs: String[];
   respError = false;
   respOk = false;
   spinner = false;
-  searchParams: string[] = ['0','999999','0','50','ID','+'];
+  searchParams: string[] = ['0', '999999', '0', '50', 'ID', '+'];
   loadedEmployees: Employee[] = [];
 
   constructor(
@@ -48,8 +47,6 @@ export class UploadListComponent implements OnInit, OnDestroy  {
   }
 
   onSubmit() {
-    console.log(this.uploadForm);
-    console.log(this.uploadForm.get('fileSource').value);
     const formData = new FormData();
     formData.append('file', this.uploadForm.get('fileSource').value);
     this.spinner = true;
@@ -63,24 +60,24 @@ export class UploadListComponent implements OnInit, OnDestroy  {
         this.feedbackMsgs = errorresp.error;
         this.respError = true;
         this.spinner = false;
-        if(this.feedbackMsgs[0] === 'Duplicate ID/Login detected') {
+        if (this.feedbackMsgs[0] === 'Duplicate ID/Login detected') {
           console.log('after if block');
-          this.retrieveService.retrieveEmployees(this.searchParams).subscribe(
-            data => {
+          this.retrieveService
+            .retrieveEmployees(this.searchParams)
+            .subscribe((data) => {
               this.loadedEmployees = data;
               this.listService.activateList.next(this.loadedEmployees);
-            }
-          );
+            });
         }
       },
       () => {
-        if(!this.respError) {
-          this.retrieveService.retrieveEmployees(this.searchParams).subscribe(
-            data => {
+        if (!this.respError) {
+          this.retrieveService
+            .retrieveEmployees(this.searchParams)
+            .subscribe((data) => {
               this.loadedEmployees = data;
               this.listService.activateList.next(this.loadedEmployees);
-            }
-          );
+            });
         }
       }
     );
@@ -91,9 +88,6 @@ export class UploadListComponent implements OnInit, OnDestroy  {
     this.respOk = false;
     this.respError = false;
   }
-  
-  
-  ngOnDestroy() {
 
-  }
+  ngOnDestroy() {}
 }

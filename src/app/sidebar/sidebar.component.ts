@@ -13,7 +13,6 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {}
 
   openModal(id: string) {
-    //console.log("Button pressed");
     this.modalService.open(id);
   }
 
