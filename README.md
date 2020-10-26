@@ -13,7 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Important to note
 
-1. All uploaded records are stored on a local database in a persistent manner. This means even if the application is restarted, uploaded records will still be retained. However, uploaded records are not loaded automatically when the front end is ***restated*** after an upload, the records can be loaded through the `filter` option.
+1. All uploaded records are stored on a local database in a persistent manner. This means even if the application is restarted, uploaded records will still be retained. However, uploaded records are not loaded automatically when the front end is ***restarted*** after an upload, the records can be loaded through the `filter` option.
 2. Test cases are in `cypress/integration/Tests` and test data can be found in `cypress/fixtures`
 3. Assumptions are listed in the [backend repository](https://github.com/NUSe0032202/employeeapp)
 
