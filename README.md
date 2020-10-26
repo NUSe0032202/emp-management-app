@@ -13,8 +13,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Important to note
 
-1. Test cases are in `cypress/integration/Tests` and test data can be found in `cypress/fixtures`
-2. Assumptions are listed in the [backend repository](https://github.com/NUSe0032202/employeeapp)
+1. All uploaded records are stored on a local database in a persistent manner. This means even if the application is restarted, uploaded records will still be retained. However, uploaded records are not loaded automatically when the front end is ***restated*** after an upload, the records can be loaded through the `filter` option.
+2. Test cases are in `cypress/integration/Tests` and test data can be found in `cypress/fixtures`
+3. Assumptions are listed in the [backend repository](https://github.com/NUSe0032202/employeeapp)
 
 ## How to use
 
@@ -27,6 +28,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 5. To filter records, click on `Filter` on the sidebar and enter the desired filter parameters. When done, click on `Retrieve Records` and the records would be automatically rendered.
 6. Note that the form data when using `Filter` and the file specified in `Upload` are saved even when the respective features are closed. Thus, they will still be shown when reopened.
+7. To delete a record,click on the `Delete` button present on each employee card. The rendered list of employees will be refreshed to reflect the change.
+
+
+
 
 
 
